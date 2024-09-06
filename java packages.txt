@@ -1,0 +1,44 @@
+import java.util.Scanner;
+
+public class RailwayManagementSystem {
+	public static void main(String[] args) {
+		System.out.println("Welcome to Railway Management System");
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Please enter your name");
+		String name = sc.nextLine();
+		System.out.println("Hello, "+name+". How can I help you?");
+		System.out.println("1. Book a ticket\n2. Check ticket status\n3. Cancel ticket\n4. Exit\n");
+		System.out.print("Please choose your option: ");
+		int option = sc.nextInt();
+		switch(option) {
+			case 1:
+				bookTicket();
+				break;
+			case 2:
+				checkTicketStatus();
+				break;
+			case 3:
+				cancelTicket();
+				break;
+			case 4:
+				System.exit(0);
+				break;
+			default:
+				System.out.println("Invalid option. Please choose from 1 to 4");
+				break;
+		}
+		sc.close();
+	}
+	
+	public static void bookTicket() {
+		// code to book a ticket
+	}
+	
+	public static void checkTicketStatus() {
+		// code to check ticket status
+	}
+	
+	public static void cancelTicket() {
+		// code to cancel ticket
+	}
+}

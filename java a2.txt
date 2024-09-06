@@ -1,0 +1,38 @@
+public class RailwayManagementSystem {
+
+    int trainNumber;
+    String trainName;
+    String source;
+    String destination;
+
+    public RailwayManagementSystem(int trainNumber, String trainName, String source, String destination) {
+        this.trainNumber = trainNumber;
+        this.trainName = trainName;
+        this.source = source;
+        this.destination = destination;
+    }
+
+    public static void main(String[] args) {
+
+        // Create an array of 10 RailwayManagementSystem objects
+        RailwayManagementSystem[] trains = new RailwayManagementSystem[10];
+
+        // Initialize the array with the details of the 10 trains
+        trains[0] = new RailwayManagementSystem(123, "Rajdhani Express", "New Delhi", "Mumbai");
+        trains[1] = new RailwayManagementSystem(124, "Shatabdi Express", "Kolkata", "Chennai");
+        trains[2] = new RailwayManagementSystem(125, "Karnataka Express", "Bangalore", "Mangalore");
+        trains[3] = new RailwayManagementSystem(126, "Jan Shatabdi Express", "Secunderabad", "Vijayawada");
+        trains[4] = new RailwayManagementSystem(127, "Duronto Express", "Ahmedabad", "Mumbai");
+        trains[5] = new RailwayManagementSystem(128, "Sampark Kranti Express", "Pune", "Delhi");
+        trains[6] = new RailwayManagementSystem(129, "Garib Rath Express", "Chennai", "Bangalore");
+        trains[7] = new RailwayManagementSystem(130, "Konkan Kanya Express", "Mumbai", "Goa");
+        trains[8] = new RailwayManagementSystem(131, "Vivek Express", "Kanyakumari", "Dibrugarh");
+        trains[9] = new RailwayManagementSystem(132, "Paschim Express", "Delhi", "Ahmedabad");
+
+        // Print the details of the 10 trains
+        System.out.println("Train Number\t Train Name\t Source\t\t Destination");
+        for (RailwayManagementSystem train : trains) {
+            System.out.println(train.trainNumber + "\t\t" + train.trainName + "\t\t" + train.source + "\t\t" + train.destination);
+        }
+    }
+}

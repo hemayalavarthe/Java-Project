@@ -1,0 +1,125 @@
+write a program for railway management system in java by using inheritance
+
+import java.util.*;
+
+// Super Class
+class Railway
+{
+    String trainName;
+    String trainNumber;
+    String stationName;
+    String stationCode;
+    String trainType;
+    int totalSeats;
+    int availableSeats;
+    
+    public Railway(String trainName, String trainNumber, String stationName, String stationCode, String trainType, int totalSeats, int availableSeats)
+    {
+        this.trainName = trainName;
+        this.trainNumber = trainNumber;
+        this.stationName = stationName;
+        this.stationCode = stationCode;
+        this.trainType = trainType;
+        this.totalSeats = totalSeats;
+        this.availableSeats = availableSeats;
+    }
+    
+    // Method to display the details of the train
+    public void displayDetails()
+    {
+        System.out.println("Train Name: " + trainName);
+        System.out.println("Train Number: " + trainNumber);
+        System.out.println("Station Name: " + stationName);
+        System.out.println("Station Code: " + stationCode);
+        System.out.println("Train Type: " + trainType);
+        System.out.println("Total Seats: " + totalSeats);
+        System.out.println("Available Seats: " + availableSeats);
+    }
+}
+
+
+// Sub Class 1
+class TicketBooking extends Railway
+{
+    String name;
+    String source;
+    String destination;
+    int ticketPrice;
+    
+    public TicketBooking(String trainName, String trainNumber, String stationName, String stationCode, String trainType, int totalSeats, int availableSeats, String name, String source, String destination, int ticketPrice)
+    {
+        super(trainName, trainNumber, stationName, stationCode, trainType, totalSeats, availableSeats);
+        this.name = name;
+        this.source = source;
+        this.destination = destination;
+        this.ticketPrice = ticketPrice;
+    }
+    
+    // Method to book the ticket
+    public void bookTicket()
+    {
+        if(availableSeats > 0)
+        {
+            System.out.println("Ticket booked successfully!");
+            System.out.println("Name: " + name);
+            System.out.println("Source: " + source);
+            System.out.println("Destination: " + destination);
+            System.out.println("Ticket Price: " + ticketPrice);
+            availableSeats--; 
+            System.out.println("Available Seats: " + availableSeats);
+        }
+        else
+        {
+            System.out.println("Sorry! No tickets available.");
+        }
+    }
+}
+
+
+// Sub Class 2
+class TrainStatus extends Railway
+{
+    String currentStatus;
+    
+    public TrainStatus(String trainName, String trainNumber, String stationName, String stationCode, String trainType, int totalSeats, int availableSeats, String currentStatus)
+    {
+        super(trainName, trainNumber, stationName, stationCode, trainType, totalSeats, availableSeats);
+        this.currentStatus = currentStatus;
+    }
+    
+    // Method to check the current status of the train
+    public void checkTrainStatus()
+    {
+        System.out.println("Train Name: " + trainName);
+        System.out.println("Train Number: " + trainNumber);
+        System.out.println("Current Status: " + currentStatus);
+    }
+}
+
+// Main Class
+public class RailwayManagementSystem
+{
+    public static void main(String[] args)
+    {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Welcome to Railway Management System");
+        
+        // Creating object of TicketBooking class
+        TicketBooking tb = new TicketBooking("Rajdhani Express","12345","New Delhi","NDL", "Express",100,90,"John Doe","New Delhi","Mumbai",1000);
+        tb.displayDetails();
+        System.out.println("Do you want to book a ticket? (yes/no)");
+        String ticketChoice = sc.nextLine();
+        if(ticketChoice.equals("yes"))
+        {
+            tb.bookTicket();
+        }
+        else
+        {
+            System.out.println("Thank  you!");
+        }
+        
+        // Creating object of TrainStatus class
+        TrainStatus ts = new TrainStatus("Rajdhani Express","12345","New Delhi","NDL","Express",100,90,"Arrived");
+        ts.checkTrainStatus();
+    }
+}

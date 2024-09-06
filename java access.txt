@@ -1,0 +1,140 @@
+write a program for railway management system in java by using inheritence,interfaces,threads and exceptions concepts
+
+
+
+import java.util.*;
+
+// Main class for the RailWay Management System
+public class RailWayManagementSystem {
+    public static void main(String[] args) {
+        // Create a new Scanner object
+        Scanner sc = new Scanner(System.in);
+
+        // Display the main menu
+        System.out.println("Welcome to the RailWay Management System!");
+        System.out.println("What would you like to do?");
+        System.out.println("1. Book a ticket");
+        System.out.println("2. View train schedule");   // add in java 1
+        System.out.println("3. Exit");
+
+        // Get the user's input
+        int input = sc.nextInt();
+
+        // Create a switch case to handle different user selections
+        switch (input) {
+            case 1:
+                // Create a new instance of the TicketBooking class
+                TicketBooking ticketBooking = new TicketBooking();
+
+                // Call the bookTicket method
+                ticketBooking.bookTicket();
+                break;
+            case 2:
+                // Create a new instance of the TrainSchedule class
+                TrainSchedule trainSchedule = new TrainSchedule();
+
+                // Call the viewSchedule method
+                trainSchedule.viewSchedule();
+                break;
+            case 3:
+                // Exit the program
+                System.out.println("Thank you for using the RailWay Management System.");
+                System.exit(0);
+                break;
+            default:
+                // Display an error message if the user enters an invalid option
+                System.out.println("Invalid option. Please enter a valid option.");
+                break;
+        }
+
+        // Close the Scanner object
+        sc.close();
+    }
+}
+
+// Class for booking tickets
+class TicketBooking {
+    // Method for booking tickets
+    public void bookTicket() {
+        // Create a new Scanner object
+        Scanner sc = new Scanner(System.in);
+
+        // Display the ticket booking form
+        System.out.println("Please enter the following details to book your ticket:");
+        System.out.print("Name: ");
+        String name = sc.nextLine();
+        System.out.print("Source: ");
+        String source = sc.nextLine();
+        System.out.print("Destination: ");
+        String destination = sc.nextLine();
+        System.out.print("Date of journey (DD-MM-YYYY): ");
+        String date = sc.nextLine();
+
+        // Create a Ticket object
+        Ticket ticket = new Ticket(name, source, destination, date);
+
+        // Print the ticket details
+        System.out.println("Your ticket has been booked.");
+        System.out.println("Ticket Details:");
+        System.out.println("Name: " + ticket.getName());
+        System.out.println("Source: " + ticket.getSource());
+        System.out.println("Destination: " + ticket.getDestination());
+        System.out.println("Date of journey: " + ticket.getDate());
+
+        // Close the Scanner object
+        sc.close();
+    }
+}
+
+// Class for the Ticket object
+class Ticket {
+    private String name;
+    private String source;
+    private String destination;
+    private String date;
+
+    // Constructor
+    public Ticket(String name, String source, String destination, String date) {
+        this.name = name;
+        this.source = source;
+        this.destination = destination;
+        this.date = date;
+    }
+
+    // Getters
+    public String getName() {
+        return this.name;
+    }
+
+    public String getSource() {
+        return this.source;
+    }
+
+    public String getDestination() {
+        return this.destination;
+    }
+
+    public String getDate() {
+        return this.date;
+    }
+}
+
+// Class for viewing the Train Schedule
+class TrainSchedule {
+    // Method for viewing the Train Schedule
+    public void viewSchedule() {
+        // Create a new Scanner object
+        Scanner sc = new Scanner(System.in);
+
+        // Display the train schedule
+        System.out.println("Train Schedule:");
+        System.out.println("Train No.\tFrom\tTo\tDeparture\tArrival");
+        System.out.println("12001\t\tDelhi\tMumbai\t06:00\t\t14:00");
+        System.out.println("12002\t\tMumbai\tDelhi\t14:30\t\t22:30");
+        System.out.println("12003\t\tDelhi\tKolkata\t08:00\t\t16:00");
+        System.out.println("12004\t\tKolkata\tDelhi\t16:30\t\t00:30");
+
+        // Close the Scanner object
+        sc.close();
+    }
+}

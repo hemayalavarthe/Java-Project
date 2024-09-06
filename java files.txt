@@ -1,0 +1,131 @@
+import java.io.*;
+import java.util.Scanner;
+
+public class RailwayManagementSystem {
+ 
+	public static void main(String[] args) throws IOException {
+		
+		int choice;
+		
+		//Create an object of Scanner class
+		Scanner sc = new Scanner(System.in);
+		
+		//Create an object of File class
+		File file = new File("railwaybookingsystem.txt");
+		
+		//Create an array of string to store details of users
+		String[] user_details = new String[100];
+		
+		//Create an object of BufferedReader
+		BufferedReader br = new BufferedReader(new FileReader(file));
+		
+		//Read the contents from the file
+		String line;
+		int i=0;
+		while((line = br.readLine()) != null) {
+			user_details[i] = line;
+			i++;
+		}
+		
+		//Close the file
+		br.close();
+		
+		//Display the main menu
+		System.out.println("Welcome to Railway Management System");
+		System.out.println("1. Book Tickets");
+		System.out.println("2. Cancel Tickets");
+		System.out.println("3. Check Availability");
+		System.out.println("4. Exit");
+		System.out.print("\nSelect your choice: ");
+		choice = sc.nextInt();
+		
+		switch(choice) {
+		
+		//Book tickets
+		case 1:
+			//Get user details from the user
+			System.out.print("Enter your name: ");
+			String name = sc.next();
+			System.out.print("Enter your age: ");
+			int age = sc.nextInt();
+			System.out.print("Enter the source station: ");
+			String source = sc.next();
+			System.out.print("Enter the destination station: ");
+			String dest = sc.next();
+			System.out.print("Enter the number of tickets: ");
+			int tickets = sc.nextInt();
+			
+			//Write the details of the user to the file
+			FileWriter writer = new FileWriter(file, true);
+			BufferedWriter bw = new BufferedWriter(writer);
+			bw.write(name + "," + age + "," + source + "," + dest + "," + tickets);
+			bw.newLine();
+			bw.close();
+			break;
+			
+		//Cancel tickets
+		case 2:
+			//Get the name of the user whose tickets are to be cancelled
+			System.out.print("Enter the name of the user whose tickets are to be cancelled: ");
+			String uname = sc.next();
+			
+			//Search the file for the user's details
+			for(int j=0; j<i; j++) {
+				String[] details = user_details[j].split(",");
+				
+				//Check if the name entered by the user matches with the name in the file
+				if(details[0].equalsIgnoreCase(uname)) {
+					//Remove the details from the file
+					user_details[j] = "";
+				}
+			}
+			
+			//Write the updated details to the file
+			BufferedWriter bw1 = new BufferedWriter(new FileWriter(file));
+			for(int k=0; k<i; k++) {
+				if(!user_details[k].equals("")) {
+					bw1.write(user_details[k]);
+					bw1.newLine();
+				}
+			}
+			bw1.close();
+			break;
+			
+		//Check availability
+		case 3:
+			//Get the source and destination stations
+		System.out.println("Enter the source station: ");
+			String source = sc.next();
+			System.out.println("Enter the destination station: ");
+			String dest = sc.next();
+			
+			//Check if the train is available
+			boolean isAvailable = false;
+			for(int k=0; k<i; k++) {
+				if(!user_details[k].equals("")) {
+					String[] details = user_details[k].split(" ");
+					if(details[1].equals(source) && details[2].equals(dest)) {
+						isAvailable = true;
+						break;
+					}
+				}
+			}
+			if(isAvailable) {
+				System.out.println("Train is available");
+			}
+			else {
+				System.out.println("Train is not available");
+			}
+			break;
+			
+		//Exit
+		case 4:
+			System.out.println("Thank you for using the Railway Management System");
+			break;
+			
+		default:
+			System.out.println("Invalid choice");
+			break;
+		}
+	}
+}

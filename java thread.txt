@@ -1,0 +1,69 @@
+public class RailwayManagementSystem {
+    // Define a thread class to manage the railway system
+    public static class RailwayThread extends Thread {
+        // Class variables
+        private int ticketCount = 0;
+        private int totalSeats = 0;
+        private int availableSeats = 0;
+ 
+        // Constructor
+        public RailwayThread(int totalSeats) {
+            this.totalSeats = totalSeats;
+            this.availableSeats = totalSeats;
+        }
+ 
+        // Run method
+        public void run() {
+            while (true) {
+                try {
+                    // Wait until a ticket is purchased
+                    wait();
+ 
+                    // Decrement the available seats
+                    availableSeats--;
+ 
+                    // Print out the number of tickets left
+                    System.out.println("Tickets remaining: " + availableSeats);
+ 
+                    // Increment the ticket count
+                    ticketCount++;
+ 
+                    // Check if there are still seats available
+                    if (availableSeats == 0) {
+                        System.out.println("The train is full.");
+                        break;
+                    }
+                } catch (InterruptedException e) {
+                    // Catch and print stack trace
+                    e.printStackTrace();
+                }
+            }
+ 
+            // Print out the total number of tickets purchased
+            System.out.println("Total number of tickets purchased: " + ticketCount);
+        }
+    }
+ 
+    // Main method
+    public static void main(String[] args) {
+        // Create a new RailwayThread object
+        RailwayThread rt = new RailwayThread(100);
+ 
+        // Start the thread
+        rt.start();
+ 
+        // Simulate ticket purchases
+        while (rt.availableSeats > 0) {
+            // Notify the thread
+            rt.notify();
+ 
+            // Sleep for 5 seconds
+            try {
+                Thread.sleep(5000);
+            } catch (InterruptedException e) {
+                // Catch and print stack trace
+                e.printStackTrace();
+            }
+        }
+    }
+}

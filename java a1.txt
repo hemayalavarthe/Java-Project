@@ -1,0 +1,25 @@
+public class RailwayManagementSystem {
+    // Array to store the train details
+    private String[][] trainDetails;
+ 
+    // Constructor to initialize the train details
+    public RailwayManagementSystem() {
+        // Initializing the array
+        trainDetails = new String[][]{
+            {"Train1", "Delhi", "Mumbai", "11:00"},
+            {"Train2", "Kolkata", "Chennai", "14:00"},
+            {"Train3", "Mumbai", "Hyderabad", "17:00"},
+            {"Train4", "Bangalore", "Pune", "20:00"}
+        };
+    }
+ 
+    // Method to get the train details
+    public void getTrainDetails() {
+        System.out.println("Train Details:");
+        for (int i = 0; i < trainDetails.length; i++) {
+            for (int j = 0; j < trainDetails[i].length; j++) {
+                System.out.print(trainDetails[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
